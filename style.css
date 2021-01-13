@@ -1,0 +1,537 @@
+/* Vamos definir para todos os ELEMENTOS
+ZERANDO a margin de todos os ELEMENTOS como o <p> tem <h1> tem etc... */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /*PADDING não irá AUMENTAR o tamanho da WIDTH*/
+}
+
+body {
+  /* Aqui no BODY vamos definir algumas ESTRATEGIAS */
+  background: #E6ECF0; /*A cor de FUNDO para minha APLICAÇÃO*/
+  font-family: 'Helvetica Neue', 'Helvetica', Arial, sans-serif; /*Definindo a FONTE da nossa APLICAÇÃO*/
+  /*Renderizar a FONTE com uma SUAVIDADE MELHOR(menos pixealizada)*/
+  text-rendering: optimizeLegibility !important; /* Sempre sobreescrever qualquer text-rendering dos
+  nossos ELEMENTOS, quero que a fonte sempre fique com o melhor ESTILO POSSIVEL */
+  -webkit-font-smoothing: antialiased !important;  /* Este comando também faz muito DIFERENÇA NAS FONTES */
+}
+
+/* Vamos TIRAR o "outline" quando clicamos no INPUT fica uma borda AZUL, é isso que estamos tirando */
+input, 
+button {
+  outline: 0;
+}
+
+/* Precisamos centralizar vários items no MEIO */
+/* A ideia será criar o "content" */
+.content {
+  max-width: 1170px; /*Ou seja estamos dizendo que a LARGURA MÁXIMA será de 1100px*/
+  /* Não importa se o usuário tiver uma tela com 3000px a largura máxima é de 1100px
+  assim para tornar o layout mais RESPONSIVO */
+  margin: 0 auto; /* colocando todo o Layout no centro da tela */
+  padding: 0 30px; /*aqui é para que mesma reduzindo a tela em menos pixels, continue com esse
+  espaçamento nas LATERAIS, quando chega aos 750px esse Espaçamento lateral some*/
+}
+
+header#main-header {
+  height: 46px; /*Setando uma ALTURA FIXA*/
+  background: #FFF;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25); /*Sombra no Header*/
+  position: relative; /* Vamos dizer que o HEADER é o pai do BANNER */
+  z-index: 1; /*z-index: 1 fará com que o HEADER continue tendo o box-shadow*/
+} 
+
+header#main-header .content { /* colocamos o DISPLAY aqui pois o ".content" é o CONTAINER agora */
+  /* Aqui iremos colocar o FLEX pois aqui é o CONTAINER que tem todos os elementos HEADER DENTRO */
+  display: flex;
+  /* flex-direction: row; Já temos o flex-direction: row, por PADRÃO */
+  align-items: center; /*Todos os ITEMS ficaram ALINHADOS VERTICALMENTE*/
+  justify-content: space-between; /*Aqui irá dar aqueles ESPAÇO ENTRE OS ELEMENTOS, ESPAÇO NAS BORDAS*/
+  height: 100%; /*estou dizendo pode usar tudo que tem de altura, que no caso a altura é 46px;
+  ou seja USA 100% da altura do seu PAI que é de 46px de altura*/
+}
+
+header#main-header nav ul {
+  display: flex; /*Fará com que os LINKS fiquem um ao lado do outro, pois FLEX por PADRÃO já poe
+  flex-direction: row;*/
+  list-style: none; /*Tirando o pontinho PRETO que estava do lado dos LINKS*/
+
+}
+
+header#main-header nav ul li {
+  display: flex; /* Adicionei FLEX pois a IMAGEM está ENCIMA e o texto EMBAIXO, e com o 
+  align-items: center, dá para ARRUMAR ISSO TRANQUILAMENTE */
+  align-items: center;/*Alinhando HORIZONTALMENTE em PÉ*/
+  font-size: 13px;
+  color: #667580;
+  font-weight: bold;
+  margin-left: 30px; /*Dando uma SEPARADA NOS LINKS */
+}
+
+header#main-header nav ul li:first-child { /*Tirando a margin-left, do primeiro ITEM DA LISTA(LINK)*/
+  margin: 0;
+}
+
+header#main-header nav ul li img{
+  margin-right: 7px;
+}
+
+/* Para que os 3 ELEMENTOS (INPUT, IMG, BUTTON) caibão na mesma linha sem quebrar */
+header#main-header div.side {
+  display: flex;
+}
+
+header#main-header div.side input {
+  width: 220px; /*Definindo um "width" para a "lupa" ficar lá pelos 190px */
+  border: 1px solid #E6ECF0;
+  height: 34px;
+  padding: 0 30px 0 12px; /*Aqui é para o TEXTO digitado pelo usuário não ficar debaixo da "lupa"*/
+  /*Ou seja aquela CAMADA do padding é bem ai que a "lupa" vai ficar */
+  border-radius: 16px;
+  color: #667581;
+  font-size: 12px;
+  background: #F5F8FA url('/images/search.svg') no-repeat 190px center; /*LUPA no INPUT*/
+}
+
+/* A IMAGEM está gigante vamos diminuir */
+
+header#main-header div.side img {
+  height: 34px;
+  width: 34px;
+  border-radius: 50%; /*Para Deixar o ITEM totalmente REDONDO*/
+  margin: 0 15px;
+}
+
+header#main-header div.side button {
+  height: 34px;
+  background: #3bb9e3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #fff;
+  border: 0;
+  border-radius: 16px;
+}
+
+div.banner {
+  height: 380px;
+  width: 100%;
+  background: #3BB9E3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFF;
+}
+
+div.bar {
+  height: 59px;
+  /* Lembrar a DIV é DISPLAY: block; então não precisamos por WIDTH: 100%; */
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+div.bar .content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 285px;
+  height: 100%;
+}
+
+div.bar .content ul {
+  display: flex;
+  list-style: none;
+  height: 100%
+}
+
+div.bar .content ul li {
+  /* Vamos deixar os ITEMS em formato COLUNA(verticalmente) */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 15px;
+  position: relative;
+}
+
+div.bar .content ul li.active::after {
+  content: '';
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: #3BB9E3;
+}
+
+div.bar .content ul li span {
+  color: #667580;
+  font-size: 12px;
+  font-weight: bold;
+}
+div.bar .content ul li strong {
+  color: #667580;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 2px;
+}
+
+div.bar .content ul li.active strong {
+  color: #3bb9e3;
+}
+
+div.bar .content .actions {
+  display: flex;
+}
+
+div.bar .content .actions button {
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #3bb9e3;
+  border: 1px solid #3bb9e3;
+  border-radius: 16px;
+  margin-right: 20px;
+}
+
+/* ESTILIZANDO AS 3 COLUNAS */
+div.wrapper-content {
+  display: flex; /*As 3 DIVS irão ficar LADO A LADO, por default flex-direction: row*/
+
+}
+
+div.wrapper-content aside.profile {
+  width: 260px;
+}
+
+div.wrapper-content aside.profile img.avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  margin-top: -130px; /*Para que o ASIDE junto com a imagem é claro, subam até a metade da barra superior*/
+}
+
+div.wrapper-content aside.profile h1 {
+  font-size: 21px;
+  color: #1D2226;
+  margin-top: 10px;
+}
+
+div.wrapper-content aside.profile span {
+  font-size: 14px;
+  color: #53626C;
+}
+
+div.wrapper-content aside.profile p {
+  font-size: 14px;
+  color: #1f2226;
+  margin-top: 15px;
+}
+
+div.wrapper-content aside.profile ul { /*Este foi o único ul que não precisou de ul.list*/
+  list-style: none;
+  margin-top: 20px;
+}
+
+div.wrapper-content aside.profile ul.list li {
+  font-size: 14px;
+  color: #657786;
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+div.wrapper-content aside.profile ul.list li img {
+  margin-right: 10px;
+}
+
+div.wrapper-content aside.profile ul.list li:first-child { /* Tirando MARGIN do 1° LI = item */
+  margin: 0px;
+}
+
+div.wrapper-content aside.profile .widget {
+  margin-top: 20px;
+}
+
+div.wrapper-content aside.profile div.widget strong {
+  font-weight: normal; /*Retirando o STRONG pois ele serviu apenas de INLINE para que fique de lado a lado da imagem */
+  color: #3BB9E3;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+div.wrapper-content aside.profile div.widget img {
+  margin-right: 5px; /*Distanciando a imagem do texto*/
+}
+
+div.wrapper-content aside.profile div.followers ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  flex-wrap: wrap; /*coloque quantas BOLINHAS conseguir na LARGURA quando não der mais DESÇA as 
+  BOLINHAS, ou seja 1ª coluna consegue guardar 5 BOLINHAS, e depois DESCE AS BOLINHAS*/
+  align-content: flex-start;
+  align-items: flex-start;
+}
+
+div.wrapper-content aside.profile .followers ul li {
+  width: 45px;
+  height: 45px;
+  background: #D0D5D9;
+  border-radius: 50%;
+  /*flex-shrink: 0; /*Largura pequena as BOLINHAS estão se ESPREMENDO, para que fiquem da LARGURA E
+  ALTURA normal, precisamos por o flex-shrink: 0; elas ficaram com a LARGURA E ALTURA normal,
+  porém ocuparam tanta largura que irão INVADIR A OUTRA COLUNA, e para que isso não aconteça,
+  definimos a propriedade acima:  flex-wrap: wrap;*/
+  /*flex-grow: 1;*/
+  flex: 1 0 auto;
+  margin: 0px 5px 5px 0px;
+
+}
+
+div.wrapper-content aside.profile .images ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  flex-wrap: wrap; /*coloque quantas BOLINHAS conseguir na LARGURA quando não der mais DESÇA as 
+  BOLINHAS, ou seja 1ª coluna consegue guardar 5 BOLINHAS, e depois DESCE AS BOLINHAS*/
+  align-content: flex-start;
+  align-items: flex-start;
+}
+
+div.wrapper-content aside.profile .images ul li {
+  width: 80px;
+  height: 80px;
+  background: #D0D5D9;
+  border-radius: 8px;
+  /*flex-shrink: 0; /*Largura pequena as BOLINHAS estão se ESPREMENDO, para que fiquem da LARGURA E
+  ALTURA normal, precisamos por o flex-shrink: 0; elas ficaram com a LARGURA E ALTURA normal,
+  porém ocuparam tanta largura que irão INVADIR A OUTRA COLUNA, e para que isso não aconteça,
+  definimos a propriedade acima:  flex-wrap: wrap;*/
+  /*flex-grow: 1; /*Está propriedade serve = para que os ITEMS AUMENTEM caso seja NECESSÁRIO,
+  ou seja para que OCUPEM TODA A LARGURA que ainda tem */
+  flex: 1 0 auto;
+  margin: 0px 5px 5px 0px;
+
+}
+
+div.wrapper-content .timeline { /*Assim TIMELINE joga o ASIDE.WIDGETS todo para a ESQUERDA*/
+  flex: 1; /*Lembrando o 1° valor significa flex-grow*/
+  background: #FFF;
+  margin: 10px 20px 0px;
+}
+
+div.wrapper-content .timeline nav { /*Nosso CONTAINER <nav>*/
+  border-bottom: 1px solid #E6ECF0;
+  padding: 10px 15px;;
+}
+
+div.wrapper-content .timeline nav a {
+  text-decoration: none;
+  font-size: 18px;
+  color: #3BB9E3;
+  font-weight: bold;
+  margin-left: 20px;
+
+}
+
+div.wrapper-content .timeline nav a:first-child {
+  margin: 0;
+}
+
+div.wrapper-content .timeline nav a.active {
+  color: #1f2226;
+}
+
+div.wrapper-content .timeline ul.tweets {
+  list-style: none;
+} 
+
+div.wrapper-content .timeline ul.tweets li { /* Mechendo no ITEM */
+  border-bottom: 1px solid #e6ecf0; /* Adicionando BORDA embaixo */
+  padding: 10px 15px;
+  display: flex;
+}
+
+div.wrapper-content .timeline ul.tweets li > img { /*Pegando a primeira IMG(1ª IMG FILHA)*/
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+div.wrapper-content .timeline ul.tweets li .info {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+div.wrapper-content .timeline ul.tweets li .info strong {
+  font-size: 14px;
+  color: #1f2326;
+}
+
+div.wrapper-content .timeline ul.tweets li .info strong span {
+  font-size: 14px;
+  color: #7B8B9A;
+}
+
+div.wrapper-content .timeline ul.tweets li .info p {
+  font-size: 14px;
+  color: #1F2326;
+  margin-top: 5px;
+
+} 
+
+div.wrapper-content .timeline ul.tweets li .actions {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+div.wrapper-content .timeline ul.tweets li a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #667580;
+  font-weight: bold;
+  font-size: 12px;
+  margin-left: 30px;
+}
+
+
+div.wrapper-content .timeline ul.tweets li a:first-child {
+  margin: 0;
+}
+
+div.wrapper-content .timeline ul.tweets li a img {
+  margin-right: 5px;
+}
+
+/* Vamos estilizar a 3ª COLUNA */
+div.wrapper-content aside.widgets { /* Para o nosso <ASIDE> definimos LARGURA de 290px; */
+  width: 290px;
+  margin-top: 10px; /*Afastando do topo(barra superior)*/
+}
+
+div.wrapper-content aside.widgets .widget {
+  background: #fff;
+  padding: 15px;
+}
+
+div.wrapper-content aside.widgets .widget .title {
+  display: flex;
+  align-items: baseline; /*Alinha todos os TEXTOS na LINHA*/
+}
+
+div.wrapper-content aside.widgets .widget .title strong {
+  font-size: 18px;
+  color: #1f2226;
+
+}
+
+/* Mechendo nos links */
+div.wrapper-content aside.widgets .widget .title a {
+  font-size: 12px;
+  color: #3BB9E3;
+  text-decoration: none;
+  position: relative;
+  padding-left: 10px;
+  
+}
+
+/* Teremos uma ideia de por as BOLINHAS nos LINKS, poderiamos colocar atrávez do list-style,
+porém vamos usar a ideia do BEFORE */
+
+div.wrapper-content aside.widgets .widget .title a::before {
+  /* Configurando as BOLINHAS que vamos colocar nos LINKS */
+  content: "";
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: #222;
+  position: absolute;
+  left: 4px;
+  top: 6px;
+}
+
+div.wrapper-content aside.widgets .follow ul {
+  list-style: none; /*Tirando a bolinha da LISTA*/
+  margin-top: 10px;
+}
+
+div.wrapper-content aside.widgets .follow ul li {
+  display: flex; /*Deixará a DIV e o <a> na linha (ROW) */
+  justify-content: space-between; /*Fará com que o contéudo da DIV fique na ESQUERDA e o "X"
+  fique na DIREITA*/
+  border-bottom: 1px solid #ccd6dd;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+div.wrapper-content aside.widgets .follow ul li:last-child { /* Vou tirar a borda do ultimo LI */
+  margin-bottom: 0; /*Se não tirarmos o margin e padding pode haver inconsistencia no LAYOUT 
+  futuramente*/
+  padding-bottom: 0;
+  border: 0;
+}
+
+div.wrapper-content aside.widgets .follow ul li .profile {
+  display: flex;
+  align-items: center;
+}
+
+div.wrapper-content aside.widgets .follow ul li .profile img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+div.wrapper-content aside.widgets .follow ul li .info {
+  margin-left: 10px; /* Espaçamento na ESQUERDA para afastar da IMAGEM */
+  display: flex;
+  flex-direction: column; /*OBS: somente o botão DESCEU, pois está em COLUNA, os textos não desceram
+  porque os 2 TEXTOS ficaram ENGLOBADOS na tag <strong><span></span></strong>*/
+}
+
+div.wrapper-content aside.widgets .follow ul li .info strong {
+  font-size: 14px;
+  color: #1F2326;
+}
+
+div.wrapper-content aside.widgets .follow ul li .info strong span {
+  font-weight: normal;
+  color: #9A9A9A;
+}
+
+div.wrapper-content aside.widgets .follow ul li .info button {
+  height: 27px;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #3bb9e3;
+  border: 1px solid #3bb9e3;
+  border-radius: 16px;
+}
+
+div.wrapper-content aside.widgets .follow ul li > a { /*Pegando somente o <a> que tiver no
+  PRIMEIRO NIVEL*/
+  color: #CCD6DD;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+
+
